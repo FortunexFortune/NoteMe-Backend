@@ -1,3 +1,3 @@
-INSERT INTO ACCOUNT (firstName, lastName, accountNumber) VALUES ('John', 'Doe', '1')
-INSERT INTO ACCOUNT (firstName, lastName, accountNumber) VALUES ('Jane', 'Doe', '2')
-INSERT INTO ACCOUNT (firstName, lastName, accountNumber) VALUES ('Jim', 'Taylor', '3')
+INSERT INTO ACCOUNT (firstName, lastName, userName, pwd) VALUES ('John', 'Doe', 'j55', 'aa')
+INSERT INTO ACCOUNT (firstName, lastName, userName, pwd) VALUES ('Jane', 'Doe','jane22', 'bb')
+INSERT INTO ACCOUNT (firstName, lastName, userName, pwd) VALUES ('Jim', 'Taylor','tay44', 'cc')

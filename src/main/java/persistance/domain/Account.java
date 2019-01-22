@@ -12,25 +12,24 @@ public class Account {
 	private Long id;
 	private String firstName;
 	private String lastName;
-	private Long accountNumber;
+	private String userName;
+	private String pwd;
+
 
 	public Account() {
 		
 	}
+	
+	public Account(String firstName, String lastName, String userName, String pwd) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		}
+	
 	public Long getId() {
 		return id;
 	}
 	public void setId(Long id) {
 		this.id = id;
-	}
-	public Account(String firstName, String lastName, Long accountNumber) {
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.accountNumber = accountNumber;
-		}
-
-	public Long getAccountNumber() {
-		return accountNumber;
 	}
 
 	public String getFirstName() {
@@ -48,15 +47,21 @@ public class Account {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-
-	public void setAccountNumber(Long accountNumber) {
-		this.accountNumber = accountNumber;
+	
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	public String getPwd() {
+		return pwd;
+	}
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 
-	@Override
-	public String toString() {
-		return "First Name=" + firstName + ", Last Name=" + lastName + ", Account Number=" + accountNumber;
-	}
+
 
 	
 

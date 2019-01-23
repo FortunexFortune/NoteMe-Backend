@@ -19,7 +19,7 @@ public class AccountEndpoint {
 	@GET
 	@Produces({ "application/json" })
 	public String getAllAccounts() {
-//		http://localhost:8080/AccountProject/api/account/getAllAccounts
+//		http://localhost:8080/SpeedMe_Backend/api/account/getAllAccounts
 		return service.getAllAccounts();
 	}
 
@@ -27,7 +27,7 @@ public class AccountEndpoint {
 	@POST
 	@Produces({ "application/json" })
 	public String createAccount(String accountJSON) {
-//		http://localhost:8080/AccountProject/api/account/createAccount
+//		http://localhost:8080/SpeedMe_Backend/api/account/createAccount
 		return service.createAccount(accountJSON);
 	}
 
@@ -35,7 +35,7 @@ public class AccountEndpoint {
 	@DELETE
 	@Produces({ "application/json" })
 	public String deleteAccount(@PathParam("id") Long id) {
-//		http://localhost:8080/AccountProject/api/account/deleteAccount/1
+//		http://localhost:8080/SpeedMe_Backend/api/account/deleteAccount/1
 		return service.deleteAccount(id);
 	}
 	
@@ -43,7 +43,7 @@ public class AccountEndpoint {
 	@POST
 	@Produces({ "application/json" })
 	public String updateAccount(@PathParam("id") Long id,String accountJSON) {
-//		http://localhost:8080/AccountProject/api/account/updateAccount/3
+//		http://localhost:8080/SpeedMe_Backend/api/account/updateAccount/3
 		return service.updateAccount(id,accountJSON);
 	}
 

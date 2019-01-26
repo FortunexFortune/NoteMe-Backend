@@ -21,7 +21,6 @@ public class Test {
 		this.speedTest = speedTest;
 		
 	}
-
 	
 	public String getUserName() {
 		return userName;

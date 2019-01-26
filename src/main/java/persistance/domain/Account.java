@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -12,13 +13,14 @@ public class Account {
 	private String userName;
 	private String pwd;
 	
-//	@OneToMany(mappedBy="userName", cascade=CascadeType.ALL)
-//	private List<Test> tets = new ArrayList<>();;
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="userName", cascade=CascadeType.ALL)
+	private List<Test> tets = new ArrayList<>();;
 
 
 	public Account() {
 		
 	}
+
 	public Account(String userName, String pwd) {
 		this.userName = userName;
 		this.pwd = pwd;
@@ -35,6 +37,13 @@ public class Account {
 	}
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
+	}
+	
+	public List<Test> getTets() {
+		return tets;
+	}
+	public void setTets(List<Test> tets) {
+		this.tets = tets;
 	}
 
 

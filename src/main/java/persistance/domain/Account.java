@@ -12,8 +12,8 @@ public class Account {
 	private String userName;
 	private String pwd;
 	
-//	@OneToMany(mappedBy="userName", cascade=CascadeType.ALL)
-//	private List<Test> tets = new ArrayList<>();;
+	@OneToMany(mappedBy="userName", cascade=CascadeType.ALL)
+	private List<Test> tets = new ArrayList<>();;
 
 
 	public Account() {

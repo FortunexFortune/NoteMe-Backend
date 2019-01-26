@@ -1,7 +1,6 @@
 INSERT INTO TEST (speedTest, userName) VALUES ('fast','j55')
 INSERT INTO TEST (speedTest,userName) VALUES ('slow','j55')
-INSERT INTO TEST (speedTest, userName) VALUES ('very fast', 'tay44')
-
+INSERT INTO TEST (speedTest, userName) VALUES ('very fast','tay44')
 
 
 INSERT INTO ACCOUNT (userName, pwd) VALUES ('j55', 'aa')

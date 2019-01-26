@@ -14,16 +14,21 @@ public class Test {
 	private String speedTest;
 	private String userName;
 	
+	public Test(){
+	}
+	
+	public Test(String speedTest) {
+		this.speedTest = speedTest;
+		
+	}
+
+	
 	public String getUserName() {
 		return userName;
 	}
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-	public Test(String speedTest){
-		this.speedTest = speedTest;
 	}
 	
 	public String getSpeedTest() {

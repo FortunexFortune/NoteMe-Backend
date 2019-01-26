@@ -31,31 +31,24 @@ public class AccountEndpoint {
 		return service.createAccount(accountJSON);
 	}
 
-	@Path("/deleteAccount/{id}")
+	@Path("/deleteAccount/{username}")
 	@DELETE
 	@Produces({ "application/json" })
-	public String deleteAccount(@PathParam("id") Long id) {
+	public String deleteAccount(@PathParam("username") String username) {
 //		http://localhost:8080/SpeedMe_Backend/api/account/deleteAccount/1
-		return service.deleteAccount(id);
+		return service.deleteAccount(username);
 	}
 	
-	@Path("/updateAccount/{id}")
+	@Path("/updateAccount/{username}")
 	@POST
 	@Produces({ "application/json" })
-	public String updateAccount(@PathParam("id") Long id,String accountJSON) {
+	public String updateAccount(@PathParam("username") String username,String accountJSON) {
 //		http://localhost:8080/SpeedMe_Backend/api/account/updateAccount/3
-		return service.updateAccount(id,accountJSON);
+		return service.updateAccount(username,accountJSON);
 	}
 
 	public void setService(AccountService service) {
 		this.service = service;
 	}
 
-//  Post a new Account / Update	
-//	{
-//		firstName: Jane,
-//		lastName: Do,
-//		accountNumbe: 2
-//	}
-	
 }

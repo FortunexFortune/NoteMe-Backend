@@ -35,26 +35,35 @@ public class AccountDBRepository implements AccountRepository {
 	@Transactional(REQUIRED)
 	public String createAccount(String accountJSON) {
 		Account newAccount = util.getObjectForJSON(accountJSON, Account.class);
-		manager.persist(newAccount);
-		return "{\"message\": \"account has been sucessfully added\"}";
+		Account accountInDB = findAccount(newAccount.getUserName());
+		if (accountInDB != null) {
+			return "{\"message\": \"username is already taken\"}";
+			}
+		else {
+			manager.persist(newAccount);
+			return "{\"message\": \"account has been sucessfully added\"}";
+		}
 	}
 	
+	
 	@Transactional(REQUIRED)
-	public String updateAccount(Long id,String accountJSON) {
-		Account accountInDB = findAccount(id);
+	public String updateAccount(String username,String accountJSON) {
+		Account accountInDB = findAccount(username);
 		Account newAccount = util.getObjectForJSON(accountJSON, Account.class);
-		if (accountInDB != null) {
+		if (accountInDB.getUserName() == newAccount.getUserName()) {
+			return "{\"message\": \"username is already taken \"}";
+			}
+		else {
 			manager.remove(accountInDB);
 			manager.persist(newAccount);
 			return "{\"message\": \"has been sucessfully updated\"}";
 			}
-		return"{\"message\": \"The account number is invalid\"}";
 	}
 	
 	
 	@Transactional(REQUIRED)
-	public String deleteAccount(Long id) {
-		Account accountInDB = findAccount(id);
+	public String deleteAccount(String username) {
+		Account accountInDB = findAccount(username);
 		if (accountInDB != null) {
 			manager.remove(accountInDB);
 			return "{\"message\": \"account sucessfully deleted\"}";
@@ -63,10 +72,9 @@ public class AccountDBRepository implements AccountRepository {
 	}
 
 	
-	private Account findAccount(Long id) {
-		return manager.find(Account.class, id);
+	private Account findAccount(String username) {
+		return manager.find(Account.class, username);
 	}
-	
 	public void setManager(EntityManager manager) {
 		this.manager = manager;
 	}

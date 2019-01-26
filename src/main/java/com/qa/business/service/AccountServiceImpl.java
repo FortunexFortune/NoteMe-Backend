@@ -30,14 +30,14 @@ public class AccountServiceImpl implements AccountService {
 
 	}
 	
-	public String updateAccount(Long id, String accountJSON) {
+	public String updateAccount(String username, String accountJSON) {
 		// TODO Auto-generated method stub
-		return repo.updateAccount(id,accountJSON);
+		return repo.updateAccount(username,accountJSON);
 	}
 
-	public String deleteAccount(Long id) {
+	public String deleteAccount(String username) {
 		// TODO Auto-generated method stub
-		return repo.deleteAccount(id);
+		return repo.deleteAccount(username);
 	}
 	
 	public void setRepo(AccountRepository repo) {

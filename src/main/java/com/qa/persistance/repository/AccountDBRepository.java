@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import com.qa.persistance.domain.Account;
+import com.qa.persistance.domain.Test;
 import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
@@ -59,8 +60,10 @@ public class AccountDBRepository implements AccountRepository {
 				return "{\"message\": \"username is already taken \"}";
 				}
 			else {
+				
 				manager.remove(accountInDB);
 				manager.persist(newAccount);
+				
 				return "{\"message\": \"has been sucessfully updated\"}";
 				}
 		}
@@ -82,6 +85,11 @@ public class AccountDBRepository implements AccountRepository {
 	private Account findAccount(String username) {
 		return manager.find(Account.class, username);
 	}
+	
+	private Test findTest(String username) {
+		return manager.find(Test.class, username);
+	}
+	
 	public void setManager(EntityManager manager) {
 		this.manager = manager;
 	}

@@ -1,4 +1,4 @@
-package persistance.domain;
+package com.qa.persistance.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

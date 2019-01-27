@@ -12,9 +12,9 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.transaction.Transactional;
 
+import com.qa.persistance.domain.Account;
+import com.qa.persistance.domain.Test;
 import com.qa.util.JSONUtil;
-
-import persistance.domain.Account;
 
 @Transactional(SUPPORTS)
 @Default
@@ -50,14 +50,24 @@ public class AccountDBRepository implements AccountRepository {
 	public String updateAccount(String username,String accountJSON) {
 		Account accountInDB = findAccount(username);
 		Account newAccount = util.getObjectForJSON(accountJSON, Account.class);
-		if (accountInDB.getUserName() == newAccount.getUserName()) {
+		Account accountDuplicate = findAccount(newAccount.getUserName());
+		
+		if (accountInDB != null) {
+			if(accountDuplicate != null) {
 			return "{\"message\": \"username is already taken \"}";
 			}
-		else {
-			manager.remove(accountInDB);
-			manager.persist(newAccount);
-			return "{\"message\": \"has been sucessfully updated\"}";
-			}
+			if (accountInDB.getUserName() == newAccount.getUserName()) {
+				return "{\"message\": \"username is already taken \"}";
+				}
+			else {
+				
+				manager.remove(accountInDB);
+				manager.persist(newAccount);
+				
+				return "{\"message\": \"has been sucessfully updated\"}";
+				}
+		}
+			return "{\"message\": \"Username does not exist\"}";
 	}
 	
 	
@@ -75,6 +85,11 @@ public class AccountDBRepository implements AccountRepository {
 	private Account findAccount(String username) {
 		return manager.find(Account.class, username);
 	}
+	
+	private Test findTest(String username) {
+		return manager.find(Test.class, username);
+	}
+	
 	public void setManager(EntityManager manager) {
 		this.manager = manager;
 	}

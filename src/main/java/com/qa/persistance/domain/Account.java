@@ -15,8 +15,7 @@ public class Account {
 	
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="userName", cascade=CascadeType.ALL)
-	private List<Test> tests = new ArrayList<>();
-
+	private List<Note> notes = new ArrayList<>();
 
 	public Account() {
 		
@@ -39,13 +38,17 @@ public class Account {
 	public void setPwd(String pwd) {
 		this.pwd = pwd;
 	}
+	
 
-	public List<Test> getTests() {
-		return tests;
+	public List<Note> getNotes() {
+		return notes;
 	}
 
-	public void setTests(List<Test> tests) {
-		this.tests = tests;
+	public void setNotes(List<Note> notes) {
+		this.notes = notes;
 	}
+
+
+
 
 }

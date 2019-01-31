@@ -13,7 +13,7 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import com.qa.persistance.domain.Account;
-import com.qa.persistance.domain.Test;
+import com.qa.persistance.domain.Note;
 import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)
@@ -46,30 +46,55 @@ public class AccountDBRepository implements AccountRepository {
 	}
 	
 	
+//	@Transactional(REQUIRED)
+//	public String updateAccount(String username,String accountJSON) {
+//		Account accountInDB = findAccount(username);
+//		Account newAccount = util.getObjectForJSON(accountJSON, Account.class);
+//		Account accountDuplicate = findAccount(newAccount.getUserName());
+//		
+//		if (accountInDB != null) {
+//			if(accountDuplicate != null) {
+//			return "{\"message\": \"username is already taken \"}";
+//			}
+//			if (accountInDB.getUserName() == newAccount.getUserName()) {
+//				return "{\"message\": \"username is already taken \"}";
+//				}
+//			else {
+//				accountInDB.setPwd(newAccount.getPwd());
+//				newAccount = accountInDB;
+//				manager.remove(accountInDB);
+//				manager.persist(newAccount);
+//				
+//				return "{\"message\": \"has been sucessfully updated\"}";
+//				}
+//		}
+//			return "{\"message\": \"Username does not exist\"}";
+//	}
+	
 	@Transactional(REQUIRED)
 	public String updateAccount(String username,String accountJSON) {
 		Account accountInDB = findAccount(username);
 		Account newAccount = util.getObjectForJSON(accountJSON, Account.class);
-		Account accountDuplicate = findAccount(newAccount.getUserName());
 		
 		if (accountInDB != null) {
-			if(accountDuplicate != null) {
-			return "{\"message\": \"username is already taken \"}";
-			}
-			if (accountInDB.getUserName() == newAccount.getUserName()) {
-				return "{\"message\": \"username is already taken \"}";
-				}
-			else {
+			if(accountInDB.getUserName().equals(newAccount.getUserName())) {
+				
+				accountInDB.setPwd(newAccount.getPwd());
+				newAccount = accountInDB;
 				
 				manager.remove(accountInDB);
 				manager.persist(newAccount);
 				
-				return "{\"message\": \"has been sucessfully updated\"}";
-				}
+				return "{\"message\": \"Update account password sucessfully\"}";	
+			}
+			return "{\"message\": \"Username is not yours\"}";
 		}
 			return "{\"message\": \"Username does not exist\"}";
 	}
+
+
 	
+		
 	
 	@Transactional(REQUIRED)
 	public String deleteAccount(String username) {
@@ -84,10 +109,6 @@ public class AccountDBRepository implements AccountRepository {
 	
 	private Account findAccount(String username) {
 		return manager.find(Account.class, username);
-	}
-	
-	private Test findTest(String username) {
-		return manager.find(Test.class, username);
 	}
 	
 	public void setManager(EntityManager manager) {

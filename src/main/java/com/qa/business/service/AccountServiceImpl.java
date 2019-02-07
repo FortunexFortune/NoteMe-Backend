@@ -2,6 +2,7 @@ package com.qa.business.service;
 
 import javax.inject.Inject;
 
+import com.qa.persistance.domain.Account;
 import com.qa.persistance.repository.AccountRepository;
 import com.qa.util.JSONUtil;
 
@@ -20,15 +21,34 @@ public class AccountServiceImpl implements AccountService {
 	}
 
 	public String createAccount(String accountJSON) {
-//		if ((util.getObjectForJSON(accountJSON, Account.class).getAccountNumber() == 9999)) {
-//			return "{\"message\": \"account is blocked\"}";			
-//		}
-//		else {
-//		return repo.createAccount(accountJSON);
-//		}
+		Account newAccount = util.getObjectForJSON(accountJSON, Account.class);
+		//prevents spaces in UserName
+		for (char i : newAccount.getUserName().toCharArray()) {
+			if ( (i == ' ') ) {
+				return "{\"message\": \"account can not be added\"}";			
+			}
+		}
+		
+		//prevents spaces in password
+		for (char i : newAccount.getPwd().toCharArray()) {
+			if ( (i == ' ') ) {
+				return "{\"message\": \"account can not be added\"}";			
+			}
+		}
+		
+		//prevents null UserName
+		if ( (newAccount.getUserName().equals(""))) {
+			return "{\"message\": \"account can not be added\"}";
+		}
+		
+		//prevents null Passwords
+		if ( (newAccount.getPwd().equals(""))) {
+			return "{\"message\": \"account can not be added\"}";			
+		}
 		return repo.createAccount(accountJSON);
-
 	}
+	
+	
 	
 	public String updateAccount(String username, String accountJSON) {
 		// TODO Auto-generated method stub

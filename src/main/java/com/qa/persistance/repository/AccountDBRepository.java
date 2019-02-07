@@ -45,32 +45,6 @@ public class AccountDBRepository implements AccountRepository {
 		}
 	}
 	
-	
-//	@Transactional(REQUIRED)
-//	public String updateAccount(String username,String accountJSON) {
-//		Account accountInDB = findAccount(username);
-//		Account newAccount = util.getObjectForJSON(accountJSON, Account.class);
-//		Account accountDuplicate = findAccount(newAccount.getUserName());
-//		
-//		if (accountInDB != null) {
-//			if(accountDuplicate != null) {
-//			return "{\"message\": \"username is already taken \"}";
-//			}
-//			if (accountInDB.getUserName() == newAccount.getUserName()) {
-//				return "{\"message\": \"username is already taken \"}";
-//				}
-//			else {
-//				accountInDB.setPwd(newAccount.getPwd());
-//				newAccount = accountInDB;
-//				manager.remove(accountInDB);
-//				manager.persist(newAccount);
-//				
-//				return "{\"message\": \"has been sucessfully updated\"}";
-//				}
-//		}
-//			return "{\"message\": \"Username does not exist\"}";
-//	}
-	
 	@Transactional(REQUIRED)
 	public String updateAccount(String username,String accountJSON) {
 		Account accountInDB = findAccount(username);

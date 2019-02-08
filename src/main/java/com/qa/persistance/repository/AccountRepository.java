@@ -6,5 +6,7 @@ public interface AccountRepository {
 	String createAccount(String accountJSON);
 	String updateAccount(String username, String accountJSON);
 	String deleteAccount(String username);
+	String getAccount(String username);
+
 
 }

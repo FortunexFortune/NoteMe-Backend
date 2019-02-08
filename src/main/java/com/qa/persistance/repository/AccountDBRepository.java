@@ -66,9 +66,6 @@ public class AccountDBRepository implements AccountRepository {
 			return "{\"message\": \"Username does not exist\"}";
 	}
 
-
-	
-		
 	
 	@Transactional(REQUIRED)
 	public String deleteAccount(String username) {
@@ -78,6 +75,15 @@ public class AccountDBRepository implements AccountRepository {
 			return "{\"message\": \"account sucessfully deleted\"}";
 			}
 		return "{\"message\": \"deletion did not work\"}";
+	}
+	
+	@Transactional(REQUIRED)
+	public String getAccount(String username) {
+		Account accountInDB = findAccount(username);
+		if (accountInDB != null) {
+			return util.getJSONForObject(manager.find(Account.class, username));
+		}
+		return "{\"message\": \"account does not exist \"}";
 	}
 
 	
@@ -92,5 +98,7 @@ public class AccountDBRepository implements AccountRepository {
 	public void setUtil(JSONUtil util) {
 		this.util = util;
 	}
+
+
 
 }

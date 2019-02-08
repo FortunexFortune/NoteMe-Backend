@@ -60,9 +60,17 @@ public class AccountServiceImpl implements AccountService {
 		return repo.deleteAccount(username);
 	}
 	
+	public String getAccount(String username) {
+		// TODO Auto-generated method stub
+		return repo.getAccount(username);
+	}
+	
 	public void setRepo(AccountRepository repo) {
 		this.repo = repo;
 	}
+
+
+
 
 
 }

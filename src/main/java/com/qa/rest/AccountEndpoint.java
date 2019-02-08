@@ -22,6 +22,14 @@ public class AccountEndpoint {
 //		http://localhost:8080/SpeedMe_Backend/api/account/getAllAccounts
 		return service.getAllAccounts();
 	}
+	
+	@Path("/getAccount/{username}")
+	@GET
+	@Produces({ "application/json" })
+	public String getAccount(@PathParam("username") String username) {
+//		http://localhost:8080/SpeedMe_Backend/api/account/getAccount/username
+		return service.getAccount(username);
+	}
 
 	@Path("/createAccount")
 	@POST

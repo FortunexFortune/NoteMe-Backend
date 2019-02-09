@@ -24,23 +24,14 @@ public class AccountServiceImpl implements AccountService {
 		Account newAccount = util.getObjectForJSON(accountJSON, Account.class);
 		//prevents spaces in UserName
 		for (char i : newAccount.getUserName().toCharArray()) {
-			if ( (i == ' ') ) {
+			if ( i == ' ')  {
 				return "{\"message\": \"account can not be added\"}";			
 			}
 		}
-		
-		//prevents spaces in password
-		for (char i : newAccount.getPwd().toCharArray()) {
-			if ( (i == ' ') ) {
-				return "{\"message\": \"account can not be added\"}";			
-			}
-		}
-		
 		//prevents null UserName
 		if ( (newAccount.getUserName().equals(""))) {
 			return "{\"message\": \"account can not be added\"}";
 		}
-		
 		//prevents null Passwords
 		if ( (newAccount.getPwd().equals(""))) {
 			return "{\"message\": \"account can not be added\"}";			

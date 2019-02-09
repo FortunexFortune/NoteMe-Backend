@@ -13,7 +13,6 @@ import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import com.qa.persistance.domain.Account;
-import com.qa.persistance.domain.Note;
 import com.qa.util.JSONUtil;
 
 @Transactional(SUPPORTS)

@@ -13,10 +13,7 @@ public class AccountServiceImpl implements AccountService {
 	private AccountRepository repo;
 	@Inject
 	private JSONUtil util;
-
-	
 	public String getAllAccounts() {
-		// TODO Auto-generated method stub
 		return repo.getAllAccounts();
 	}
 
@@ -29,30 +26,23 @@ public class AccountServiceImpl implements AccountService {
 			}
 		}
 		//prevents null UserName
-		if ( (newAccount.getUserName().equals(""))) {
+		if  ("".equals(newAccount.getUserName())) {
 			return "{\"message\": \"account can not be added\"}";
 		}
-		//prevents null Passwords
-		if ( (newAccount.getPwd().equals(""))) {
-			return "{\"message\": \"account can not be added\"}";			
-		}
+
 		return repo.createAccount(accountJSON);
 	}
 	
 	
-	
 	public String updateAccount(String username, String accountJSON) {
-		// TODO Auto-generated method stub
 		return repo.updateAccount(username,accountJSON);
 	}
 
 	public String deleteAccount(String username) {
-		// TODO Auto-generated method stub
 		return repo.deleteAccount(username);
 	}
 	
 	public String getAccount(String username) {
-		// TODO Auto-generated method stub
 		return repo.getAccount(username);
 	}
 	

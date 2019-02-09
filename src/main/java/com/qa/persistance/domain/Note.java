@@ -17,6 +17,7 @@ public class Note {
 	private String userName;
 
 	public Note(){
+		//empty constructor
 	}
 	
 	public Note(String title, String content, String date) {

@@ -16,8 +16,10 @@ public class Account {
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy="userName", cascade=CascadeType.ALL)
 	private List<Note> notes = new ArrayList<>();
-
+	
 	public Account() {
+		//empty constructor
+
 		
 	}
 
